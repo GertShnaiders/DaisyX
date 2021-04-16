@@ -35,6 +35,7 @@ regex
 bs4
 lxml
 spamrefiner
+spamwatch
 httpx[http2]
 wikipedia
 coffeehouse
@@ -109,8 +110,13 @@ heroku3==4.2.3
 # For fetch.py ( for _pyrocovid) 
 aiohttp>=2.2.5
 
-spamwatch
-
+#for inlineherlper
+search_engine_parser
+time
+pykeyboard
+sys
+motor
+json
 
 # For country.py
 flag
