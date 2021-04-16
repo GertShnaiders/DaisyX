@@ -115,7 +115,6 @@ search_engine_parser
 aiofiles
 pykeyboard
 motor
-json
 
 # For country.py
 flag
