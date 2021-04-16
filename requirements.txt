@@ -112,7 +112,7 @@ aiohttp>=2.2.5
 
 #for inlineherlper
 search_engine_parser
-time
+aiofiles
 pykeyboard
 sys
 motor
