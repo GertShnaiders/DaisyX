@@ -109,14 +109,7 @@ heroku3==4.2.3
 # For fetch.py ( for _pyrocovid) 
 aiohttp>=2.2.5
 
-# For InlineHelper
-googletrans==4.0.0-rc1
-search_engine_parser
-time
-pykeyboard
-sys
-motor
-json
+
 
 
 # For country.py
