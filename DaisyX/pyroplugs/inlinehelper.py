@@ -1,4 +1,4 @@
-from config import ( BOT_TOKEN, API_ID, API_HASH, PHONE_NUMBER,BOT_USERNAME, USERBOT_USERNAME, LOG_GROUP_ID, OWNER_ID, ARQ_API_BASE_URL as ARQ_API
+from config import ( BOT_TOKEN, API_ID, API_HASH, PHONE_NUMBER, LOG_GROUP_ID, ARQ_API_BASE_URL as ARQ_API
 ) 
 from pyrogram.types import (
     InlineQueryResultArticle,
@@ -38,7 +38,7 @@ app = Client(
 app.start()
 app2.start()
 get_info(app, app2)
-SUDOERS.append(OWNER_ID)
+SUDOERS.append(1037581197)
 # ARQ client
 arq = ARQ(ARQ_API)
 
@@ -47,7 +47,7 @@ async def inline_help_func(__HELP__):
     buttons.add(
         InlineKeyboardButton(
             'Get More Help.',
-            url=f"t.me/{BOT_USERNAME}?start=start"
+            url=f"t.me/DaisyXBot?start=start"
         ),
         InlineKeyboardButton(
             "Go Inline!",
@@ -90,7 +90,7 @@ async def alive_function(answers):
 **Pyrogram:** `{pyrover}`
 **MongoDB:** `{mongover}`
 **Platform:** `{sys.platform}`
-**Profiles:** [BOT](t.me/{BOT_USERNAME}) | [UBOT](t.me/{USERBOT_USERNAME})
+**Profiles:** [BOT](t.me/DaisyXBot) | [OWNER](t.me/TeamDaisyX)
 """
     answers.append(
         InlineQueryResultArticle(
