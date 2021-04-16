@@ -109,7 +109,7 @@ heroku3==4.2.3
 # For fetch.py ( for _pyrocovid) 
 aiohttp>=2.2.5
 
-
+spamwatch
 
 
 # For country.py
