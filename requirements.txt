@@ -114,7 +114,6 @@ aiohttp>=2.2.5
 search_engine_parser
 aiofiles
 pykeyboard
-sys
 motor
 json
 
