@@ -10,8 +10,8 @@ from pyrogram.errors import (
 import asyncio
 
 """
-Credits:
-    This module belongs to https://github.com/AbirHasan2005/TG-String-Session/blob/main/genStr.py
+# Credits:
+#   This module belongs to https://github.com/AbirHasan2005/TG-String-Session/blob/main/genStr.py
 """
 
 
