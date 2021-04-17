@@ -115,6 +115,7 @@ search_engine_parser
 aiofiles
 pykeyboard
 motor
+googletrans
 
 # For country.py
 flag
