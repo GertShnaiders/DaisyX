@@ -1,59 +1,40 @@
-from DaisyX.devil import ( BOT_TOKEN, API_ID, API_HASH, OWNER_ID, PHONE_NUMBER, LOG_GROUP_ID, ARQ_API_BASE_URL as ARQ_API
-) 
-from pyrogram.types import (
-    InlineQueryResultArticle,
-    InputTextMessageContent,
-    InlineKeyboardButton,
-    InlineQueryResultPhoto
-)
-from googletrans import Translator
-from search_engine_parser import GoogleSearch
-from time import time
-from DaisyX.pyroplugs.fetch import fetch
-from DaisyX.pyroplugs.formatter import convert_seconds_to_minutes as time_convert
-from pykeyboard import InlineKeyboard
-from sys import version as pyver
-import sys
-from motor import version as mongover
-from pyrogram import __version__ as pyrover
-from pyrogram import Client
-import aiohttp
 import json
+import sys
+from time import time
+
+import aiohttp
+from google_trans_new import google_translator as Translator
+from motor import version as mongover
+from pykeyboard import InlineKeyboard
+from pyrogram import __version__ as pyrover
+from pyrogram.types import (
+    InlineKeyboardButton,
+    InlineQueryResultArticle,
+    InlineQueryResultPhoto,
+    InputTextMessageContent,
+)
+from Python_ARQ import ARQ
+from search_engine_parser import GoogleSearch
+
+from DaisyX import BOT_USERNAME
+from DaisyX import LOGS_CHANNEL_ID as LOG_GROUP_ID
+from DaisyX import OWNER_ID
+from DaisyX.pyroplugs import fetch
+from DaisyX.pyroplugs import convert_seconds_to_minutes as time_convert
+from DaisyX.services.pyrogram import pbot
 
 SUDOERS = OWNER_ID
-
-app2 = Client(
-    "userbot",
-    phone_number=PHONE_NUMBER,
-    api_id=API_ID,
-    api_hash=API_HASH
-)
-
-app = Client(
-    "wbb",
-    bot_token=BOT_TOKEN,
-    api_id=API_ID,
-    api_hash=API_HASH
-)
-
-app.start()
-app2.start()
-get_info(app, app2)
-SUDOERS.append(1037581197)
-# ARQ client
+ARQ_API = "http://35.240.133.234:8000"
 arq = ARQ(ARQ_API)
+
+app = pbot
+
 
 async def inline_help_func(__HELP__):
     buttons = InlineKeyboard(row_width=2)
     buttons.add(
-        InlineKeyboardButton(
-            'Get More Help.',
-            url=f"t.me/DaisyXBot?start=start"
-        ),
-        InlineKeyboardButton(
-            "Go Inline!",
-            switch_inline_query_current_chat=""
-        )
+        InlineKeyboardButton("Get More Help.", url=f"t.me/{BOT_USERNAME}?start=start"),
+        InlineKeyboardButton("Go Inline!", switch_inline_query_current_chat=""),
     )
     answerss = [
         InlineQueryResultArticle(
@@ -61,7 +42,7 @@ async def inline_help_func(__HELP__):
             description="Help Related To Inline Usage.",
             input_message_content=InputTextMessageContent(__HELP__),
             thumb_url="https://hamker.me/cy00x5x.png",
-            reply_markup=buttons
+            reply_markup=buttons,
         )
     ]
     answerss = await alive_function(answerss)
@@ -70,37 +51,30 @@ async def inline_help_func(__HELP__):
 
 async def alive_function(answers):
     buttons = InlineKeyboard(row_width=2)
-    bot_state = 'Dead' if not await app.get_me() else 'Alive'
-    ubot_state = 'Dead' if not await app2.get_me() else 'Alive'
+    bot_state = "Dead" if not await app.get_me() else "Alive"
+    # ubot_state = 'Dead' if not await app2.get_me() else 'Alive'
     buttons.add(
-        InlineKeyboardButton(
-            'Stats',
-            callback_data='stats_callback'
-        ),
-        InlineKeyboardButton(
-            "Go Inline!",
-            switch_inline_query_current_chat=""
-        )
+        InlineKeyboardButton("Stats", callback_data="stats_callback"),
+        InlineKeyboardButton("Go Inline!", switch_inline_query_current_chat=""),
     )
 
     msg = f"""
 **[DaisyX✨](https://github.com/TeamDaisyX):**
 **MainBot:** `{bot_state}`
-**UserBot:** `{ubot_state}`
-**Python:** `{pyver.split()[0]}`
+**UserBot:** `Alive`
+**Python:** `3.9`
 **Pyrogram:** `{pyrover}`
 **MongoDB:** `{mongover}`
 **Platform:** `{sys.platform}`
-**Profiles:** [BOT](t.me/DaisyXBot) | [OWNER](t.me/TeamDaisyX)
+**Profiles:** [BOT](t.me/{BOT_USERNAME}) | [UBOT](t.me/daisyxhelper)
 """
     answers.append(
         InlineQueryResultArticle(
-            title='Alive',
+            title="Alive",
             description="Check Bot's Stats",
             thumb_url="https://static2.aniimg.com/upload/20170515/414/c/d/7/cd7EEF.jpg",
             input_message_content=InputTextMessageContent(
-                msg,
-                disable_web_page_preview=True
+                msg, disable_web_page_preview=True
             ),
             reply_markup=buttons,
         )
@@ -120,9 +94,9 @@ __**Translated to {lang}**__
 {i.text}"""
     answers.append(
         InlineQueryResultArticle(
-            title=f'Translated to {lang}',
+            title=f"Translated to {lang}",
             description=i.text,
-            input_message_content=InputTextMessageContent(msg)
+            input_message_content=InputTextMessageContent(msg),
         )
     )
     return answers
@@ -142,8 +116,9 @@ async def urban_func(answers, text):
             InlineQueryResultArticle(
                 title=results[i].word,
                 description=results[i].definition,
-                input_message_content=InputTextMessageContent(msg)
-            ))
+                input_message_content=InputTextMessageContent(msg),
+            )
+        )
     return answers
 
 
@@ -157,13 +132,13 @@ async def google_search_func(answers, text):
 
             answers.append(
                 InlineQueryResultArticle(
-                    title=i['titles'],
-                    description=i['descriptions'],
+                    title=i["titles"],
+                    description=i["descriptions"],
                     input_message_content=InputTextMessageContent(
-                        msg,
-                        disable_web_page_preview=True
-                    )
-                ))
+                        msg, disable_web_page_preview=True
+                    ),
+                )
+            )
         except KeyError:
             pass
     return answers
@@ -177,8 +152,9 @@ async def wall_func(answers, text):
                 InlineQueryResultPhoto(
                     photo_url=results[i].url_image,
                     thumb_url=results[i].url_thumb,
-                    caption=f"[Source]({results[i].url_image})"
-                ))
+                    caption=f"[Source]({results[i].url_image})",
+                )
+            )
         except KeyError:
             pass
     return answers
@@ -189,12 +165,7 @@ async def saavn_func(answers, text):
     results = await arq.saavn(text)
     for i in results:
         buttons = InlineKeyboard(row_width=1)
-        buttons.add(
-            InlineKeyboardButton(
-                'Download | Play',
-                url=results[i].media_url
-            )
-        )
+        buttons.add(InlineKeyboardButton("Download | Play", url=results[i].media_url))
         buttons_list.append(buttons)
         duration = await time_convert(results[i].duration)
         caption = f"""
@@ -203,20 +174,22 @@ async def saavn_func(answers, text):
 **Duration:** {duration}
 **Release:** {results[i].year}
 **Singers:** {results[i].singers}"""
-        description = f"{results[i].album} | {duration} " \
+        description = (
+            f"{results[i].album} | {duration} "
             + f"| {results[i].singers} ({results[i].year})"
+        )
         try:
             answers.append(
                 InlineQueryResultArticle(
                     title=results[i].song,
                     input_message_content=InputTextMessageContent(
-                        caption,
-                        disable_web_page_preview=True
+                        caption, disable_web_page_preview=True
                     ),
                     description=description,
                     thumb_url=results[i].image,
-                    reply_markup=buttons_list[i]
-                ))
+                    reply_markup=buttons_list[i],
+                )
+            )
         except (KeyError, ValueError):
             pass
     return answers
@@ -227,12 +200,7 @@ async def deezer_func(answers, text):
     results = await arq.deezer(text, 5)
     for i in results:
         buttons = InlineKeyboard(row_width=1)
-        buttons.add(
-            InlineKeyboardButton(
-                'Download | Play',
-                url=results[i].url
-            )
-        )
+        buttons.add(InlineKeyboardButton("Download | Play", url=results[i].url))
         buttons_list.append(buttons)
         duration = await time_convert(results[i].duration)
         caption = f"""
@@ -248,11 +216,11 @@ async def deezer_func(answers, text):
                     thumb_url=results[i].thumbnail,
                     description=description,
                     input_message_content=InputTextMessageContent(
-                        caption,
-                        disable_web_page_preview=True
+                        caption, disable_web_page_preview=True
                     ),
-                    reply_markup=buttons_list[i]
-                ))
+                    reply_markup=buttons_list[i],
+                )
+            )
         except (KeyError, ValueError):
             pass
     return answers
@@ -264,12 +232,12 @@ async def webss(url):
         return
     screenshot = await fetch(f"https://patheticprogrammers.cf/ss?site={url}")
     end_time = time()
-    m = await app.send_photo(LOG_GROUP_ID, photo=screenshot['url'])
+    m = await app.send_photo(LOG_GROUP_ID, photo=screenshot["url"])
     await m.delete()
     a = []
     pic = InlineQueryResultPhoto(
-        photo_url=screenshot['url'],
-        caption=(f"`{url}`\n__Took {round(end_time - start_time)} Seconds.__")
+        photo_url=screenshot["url"],
+        caption=(f"`{url}`\n__Took {round(end_time - start_time)} Seconds.__"),
     )
     a.append(pic)
     return a
@@ -281,22 +249,23 @@ async def shortify(url):
         return
     header = {
         "Authorization": "Bearer ad39983fa42d0b19e4534f33671629a4940298dc",
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
     }
-    payload = {
-        "long_url": f"{url}"
-    }
+    payload = {"long_url": f"{url}"}
     payload = json.dumps(payload)
     async with aiohttp.ClientSession() as session:
-        async with session.post("https://api-ssl.bitly.com/v4/shorten", headers=header, data=payload) as resp:
+        async with session.post(
+            "https://api-ssl.bitly.com/v4/shorten", headers=header, data=payload
+        ) as resp:
             data = await resp.json()
     msg = f"**Original Url:** {url}\n**Shortened Url:** {data['link']}"
     a = []
     b = InlineQueryResultArticle(
         title="Link Shortened!",
-        description=data['link'],
+        description=data["link"],
         input_message_content=InputTextMessageContent(
-            msg, disable_web_page_preview=True)
+            msg, disable_web_page_preview=True
+        ),
     )
     a.append(b)
     return a
@@ -329,9 +298,8 @@ async def torrent_func(answers, text):
                     title=title,
                     description=description,
                     input_message_content=InputTextMessageContent(
-                        caption,
-                        disable_web_page_preview=True
-                    )
+                        caption, disable_web_page_preview=True
+                    ),
                 )
             )
             limit += 1
