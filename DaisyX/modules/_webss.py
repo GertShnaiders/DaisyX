@@ -9,8 +9,7 @@ __mod_name__ = "WebSS"
 __help__ = "/webss | .webss [URL] - Take A Screenshot Of A Webpage"
 
 
-@app.on_message(filters.command("webss") & filters.user(1513257955))
-@app.on_message(filters.command("webss", prefixes=["."]) & filters.user(1513257955))
+@app.on_message(filters.command("webss"))
 @capture_err
 async def take_ss(_, message):
     if len(message.command) != 2:
