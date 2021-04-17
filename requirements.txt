@@ -116,6 +116,7 @@ aiofiles
 pykeyboard
 motor
 googletrans
+Python_ARQ
 
 # For country.py
 flag
