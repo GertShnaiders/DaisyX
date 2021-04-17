@@ -122,3 +122,7 @@ Python_ARQ
 flag
 countryinfo
 
+# for screen.py
+emoji==0.6.0
+selenium==3.141.0
+requests==2.25.1
