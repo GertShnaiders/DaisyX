@@ -20,7 +20,7 @@ from DaisyX import BOT_USERNAME
 from DaisyX import LOGS_CHANNEL_ID as LOG_GROUP_ID
 from DaisyX import OWNER_ID
 from DaisyX.pyroplugs import fetch
-from DaisyX.pyroplugs import convert_seconds_to_minutes as time_convert
+from DaisyX.pyroplugs.formatter import convert_seconds_to_minutes as time_convert
 from DaisyX.services.pyrogram import pbot
 
 SUDOERS = OWNER_ID
