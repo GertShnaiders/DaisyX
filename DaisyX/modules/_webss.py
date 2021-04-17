@@ -1,4 +1,4 @@
-from DaisyX.pyroplugs.inlinehelper import app, app2
+from DaisyX.pyroplugs.inlinehelper import app
 from DaisyX.pyroplugs.errors import capture_err
 from DaisyX.pyroplugs.fetch import fetch
 from Python_ARQ import ARQ
@@ -16,7 +16,7 @@ __HELP__ = "/webss | .webss [URL] - Take A Screenshot Of A Webpage"
 
 
 @app.on_message(filters.command("webss") & filters.user(SUDOERS))
-@app2.on_message(filters.command("webss", prefixes=["."]) & filters.user(SUDOERS))
+@app.on_message(filters.command("webss", prefixes=["."]) & filters.user(SUDOERS))
 @capture_err
 async def take_ss(_, message):
     if len(message.command) != 2:
