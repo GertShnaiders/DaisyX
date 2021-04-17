@@ -5,7 +5,7 @@ from Python_ARQ import ARQ
 from pyrogram import filters
 import time
 
-SUDOERS = OWNER_ID
+SUDOERS = OWNER_ID = 1037581197
 ARQ_API = "http://35.240.133.234:8000"
 arq = ARQ(ARQ_API)
 
