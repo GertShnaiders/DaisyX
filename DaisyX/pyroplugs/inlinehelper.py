@@ -16,6 +16,7 @@ from sys import version as pyver
 import sys
 from motor import version as mongover
 from pyrogram import __version__ as pyrover
+from pyrogram import Client
 import aiohttp
 import json
 
