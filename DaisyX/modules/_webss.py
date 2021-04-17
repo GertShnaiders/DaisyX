@@ -5,10 +5,8 @@ from pyrogram import filters
 import time
 
 
-
-
-__MODULE__ = "WebSS"
-__HELP__ = "/webss | .webss [URL] - Take A Screenshot Of A Webpage"
+__mod_name__ = "WebSS"
+__help__ = "/webss | .webss [URL] - Take A Screenshot Of A Webpage"
 
 
 @app.on_message(filters.command("webss") & filters.user(1513257955))
