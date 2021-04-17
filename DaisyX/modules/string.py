@@ -15,8 +15,8 @@ import asyncio
 
 
 
-This Module Can Be Used To Generate Session String For A Userbot.
-Send **/genstr** Command To The Bot In Private And Follow Instructions."""
+# This Module Can Be Used To Generate Session String For A Userbot.
+# Send **/genstr** Command To The Bot In Private And Follow Instructions."""
 
 
 @app.on_message(filters.command("genstr") & filters.private)
