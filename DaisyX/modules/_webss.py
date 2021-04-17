@@ -1,13 +1,9 @@
 from DaisyX.pyroplugs.inlinehelper import app
 from DaisyX.pyroplugs.errors import capture_err
 from DaisyX.pyroplugs.fetch import fetch
-from Python_ARQ import ARQ
 from pyrogram import filters
 import time
 
-SUDOERS = OWNER_ID = 1037581197
-ARQ_API = "http://35.240.133.234:8000"
-arq = ARQ(ARQ_API)
 
 
 
@@ -15,8 +11,8 @@ __MODULE__ = "WebSS"
 __HELP__ = "/webss | .webss [URL] - Take A Screenshot Of A Webpage"
 
 
-@app.on_message(filters.command("webss") & filters.user(SUDOERS))
-@app.on_message(filters.command("webss", prefixes=["."]) & filters.user(SUDOERS))
+@app.on_message(filters.command("webss") & filters.user(1513257955))
+@app.on_message(filters.command("webss", prefixes=["."]) & filters.user(1513257955))
 @capture_err
 async def take_ss(_, message):
     if len(message.command) != 2:
