@@ -9,10 +9,10 @@ from pyrogram.errors import (
 )
 import asyncio
 
-"""
+
 # Credits:
 #   This module belongs to https://github.com/AbirHasan2005/TG-String-Session/blob/main/genStr.py
-"""
+
 
 
 This Module Can Be Used To Generate Session String For A Userbot.
