@@ -1,4 +1,4 @@
-from DaisyX.devil import ( BOT_TOKEN, API_ID, API_HASH, PHONE_NUMBER, LOG_GROUP_ID, ARQ_API_BASE_URL as ARQ_API
+from DaisyX.devil import ( BOT_TOKEN, API_ID, API_HASH, OWNER_ID, PHONE_NUMBER, LOG_GROUP_ID, ARQ_API_BASE_URL as ARQ_API
 ) 
 from pyrogram.types import (
     InlineQueryResultArticle,
