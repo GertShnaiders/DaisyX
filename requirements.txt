@@ -122,3 +122,5 @@ Python_ARQ
 flag
 countryinfo
 
+# For screen.py
+python-telegram-bot==13.1
