@@ -122,5 +122,3 @@ Python_ARQ
 flag
 countryinfo
 
-# for screen.py
-requests==2.25.1
