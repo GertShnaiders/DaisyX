@@ -11,10 +11,11 @@ from DaisyX.pyroplugs.inlinehelper import (
     google_search_func, urban_func, translate_func,
     alive_function, webss, shortify, wall_func,
     saavn_func, deezer_func, inline_help_func,
-    torrent_func
+    torrent_func, youtube_func
 )
 from DaisyX.services.pyrogram import pbot as app
 from pyrogram import filters
+
 
 __MODULE__ = "Inline"
 __HELP__ = """
@@ -27,8 +28,8 @@ __HELP__ = """
 **wall [Query]** - __Find Wallpapers.__
 **saavn [SONG_NAME]** - __Get Songs From Saavn.__
 **deezer [SONG_NAME]** - __Get Songs From Deezer.__
-**torrent [QUERY] - __Torrent Search.__"""
-
+**yt [Query]** - __Youtube Search.__
+**torrent [QUERY]** - __Torrent Search.__"""
 
 
 @app.on_message(filters.command("inline"))
@@ -129,6 +130,14 @@ async def inline_query_handler(client, query):
                 query.id,
                 results=answerss,
                 cache_time=10
+            )
+
+        elif text.split()[0] == "yt":
+            tex = text.split(None, 1)[1]
+            answerss = await youtube_func(answers, tex)
+            await client.answer_inline_query(
+                query.id,
+                results=answerss
             )
 
     except (IndexError, TypeError, KeyError, ValueError):
